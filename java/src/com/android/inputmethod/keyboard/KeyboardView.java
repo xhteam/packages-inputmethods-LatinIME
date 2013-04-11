@@ -357,10 +357,6 @@ public class KeyboardView extends View implements PointerTracker.DrawingProxy {
     @Override
     public void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
-        if (canvas.isHardwareAccelerated()) {
-            onDrawKeyboard(canvas);
-            return;
-        }
 
         final boolean bufferNeedsUpdates = mInvalidateAllKeys || !mInvalidatedKeys.isEmpty();
         if (bufferNeedsUpdates || mOffscreenBuffer == null) {
@@ -405,7 +401,7 @@ public class KeyboardView extends View implements PointerTracker.DrawingProxy {
 
         // Calculate clip region and set.
         final boolean drawAllKeys = mInvalidateAllKeys || mInvalidatedKeys.isEmpty();
-        final boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
+        final boolean isHardwareAccelerated = false;
         // TODO: Confirm if it's really required to draw all keys when hardware acceleration is on.
         if (drawAllKeys || isHardwareAccelerated) {
             mClipRegion.set(0, 0, width, height);
